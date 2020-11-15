@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Show</title>
+    <%- include('../partials/head.ejs') %>
+
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="showPage">
+        <div class="container show-country">
+            <div>
+                <img class ="randomCountryImage" src="<%= countryImage %>" width="100%">
+            </div>
+    
+            <div class="tripDetailsLeft">
+                <div class="countryDetails">
+                    <div class="countryShowHead">
+                        <strong class="countryShowName"><%= travel.country.name %></strong>
+                    </br>
+                        <img src="<%= travel.country.flag %>" class="<%= travel.country.name %>Flag" width="200">
+                    </br>
+                        <em>Capital City: <%= travel.country.capital %></em>
+                    </div>
+                </div>
+
+                <p>
+                    Leaving on: <%= travel.outBoundDate %>
+                </p>
+                <p>
+                    Returning on: <%= travel.inBoundDate %>
+                </p>
+                <p>
+                    Budget: 
+                    Allocated: S$ <%= travel.budget.allocated %>
+                </p>
+                <% if(travel.budget.actual !== null){ %>
+                    <p>
+                        Actual: S$ <%= travel.budget.actual %>
+                    </p>
+                <% } %>
+                <p>
+                    Notes to self: <%= travel.notes %>
+                </p>
+
+                <a href="/travel/<%= travel._id %>/edit"> Edit Trip Details </a>
+            </div>
+    
+            <div class="tripDetailsRight">
+                <div class="countryShowDetails">
+                    <div class="countryTimezone">
+                        Timezone: <%= travel.country.timezones[0] %>
+                    </div>
+                    <div class="countryCurrency">
+                        Currency: S$1 = <%= travel.country.currencies.code %> <%= travel.exchangeRate %>
+                    </div>
+                </div>
+                <div class="flightShow">
+                    <h4>Flight Details</h4>
+                    <% if(travel.flight.airline){ %>
+                        <p>
+                            <em>Airline: </em> <%= travel.flight.airline %>
+                        </p>
+                    <% } %>
+                    <% if(travel.flight.time){ %>
+                        <p>
+                            <em>Flight Time: </em> <%= travel.flight.time %>
+                        </p>
+                    <% } %>
+                    <% if(travel.flight.flightNo){ %>
+                        <p>
+                            Flight No: <%= travel.flight.flightNo %>
+                        </p>
+                    <% } %>
+                    <% if(travel.flight.airport){ %>
+                        <p>
+                            Airport: <%= travel.flight.airport %>
+                        </p>
+                    <% } %>
+                    <% if(travel.flight.price){ %>
+                        <p>
+                            Ticket Price: S$ <%= travel.flight.price %>
+                        </p>
+                    <% } %>
+                    <% if(minPrice){ %>
+                        <p> Minimum Price Recommended by Skyscanner: S$ <%= minPrice %></p>
+                    <% } %>
+                </div>
+
+                <div class="accommodationShow">
+                    <h4>Accommodation Details</h4>
+                    <% if(travel.accommodation.name){ %>
+                        <p>
+                            Name: <%= travel.accommodation.name %>
+                        </p>
+                    <% } %>
+                    <% if(travel.accommodation.address){ %>
+                        <p>
+                            Address: <%= travel.accommodation.address %>
+                        </p>
+                    <% } %>
+                    <% if(travel.accommodation.price){ %>
+                        <p>
+                            Price: S$ <%= travel.accommodation.price %>
+                        </p>
+                    <% } %>
+                </div>
+                <form action="/travel/<%= travel._id %>?_method=DELETE" method="POST">
+                    <button type="submit" class="btn btn-outline-danger">DELETE TRIP</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+
+</body> 
+</html>

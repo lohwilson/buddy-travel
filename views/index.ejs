@@ -1,0 +1,103 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Main Page</title>
+        <%- include('./partials/head.ejs') %>
+    </head>
+    <body> 
+
+        <% if (currentUser) { %>
+
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="leftNav">
+                    <a class="navButtons" href="/">Home</a>
+                    <a class="navButtons" href="/travel">Trips</a>
+                    <a class="navButtons" href="/travelAdvice">Travel Advice</a>
+                    <a class="navButtons" href="/searchFlights">Search Flights</a>
+                    <a class="navButtons" href="/searchHotels">Search Hotels</a>
+                </div>
+
+                <div class="rightNav">
+                    <a class="navButtons" href="/profile"><%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %>'s Profile</a>
+                    <form action="/sessions?_method=DELETE" method="post">
+                        <input type="submit" value="Logout">
+                    </form>
+                </div>
+            </nav>
+
+            <div class="container-fluid ">
+                <h1>
+                    Welcome <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %>!
+                </h1>
+            </div>
+
+        <% } else { %>
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="leftNav">
+                    <a class="navButtons" href="/">Home</a>
+                    <a class="navButtons" href="/travelAdvice">Travel Advice</a>
+                    <a class="navButtons" href="/searchFlights">Search Flights</a>
+                    <a class="navButtons" href="/searchHotels">Search Hotels</a>
+                </div>
+
+                <div class="rightNav">
+                    <a class="navButtons" href="/login">Login</a>
+                    <a class="navButtons" href="/register">Sign Up</a>
+                </div>
+            </nav>
+        <% } %>
+
+
+        <div class="imgContainer">
+            <div>
+                <img class="center" src="https://i.pinimg.com/originals/70/fc/0c/70fc0c9846423ccf3ff8506fd9268233.jpg" alt="img1" class="img1">
+            </div>
+            
+            <div class="container centered1">
+                <p class="containerText">
+                    Travel hassle-free and paperless with #1 all-in-one travel app
+                </p>
+            </div>
+        </div>
+
+
+        <div class="imgContainer">
+            <img class="center" src="https://images.unsplash.com/photo-1500322969630-a26ab6eb64cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjExMjU4fQ&w=1000&q=80" alt="img1" class="img1">
+            
+            <div class="container centered1">
+                
+                <p class="containerText">
+                    Plan your trips with ease while keeping track of your budget for future reference!
+                </p>
+            </div>
+        </div>
+        
+        <div class="imgContainer">
+            <img class="center" src="https://i.pinimg.com/originals/c9/10/5f/c9105f5fd746ca8e0baa9c88714c0089.jpg" alt="img1" class="img1">
+            
+            <div class="container centered1">
+                
+                <p class="containerText">
+                    Buddy, your preferred Singapore travel companion
+                </p>
+            </div>
+            <% if (!currentUser){ %>
+                <div class="container centered2">
+                    <button class="btn btn-success containerText" >
+                        <a href="/register" style="color: white">Start Planning Today</a>
+                    </button>
+                </div>
+            <% } %>
+
+        </div>
+        <%- include('./partials/footer.ejs') %>
+
+
+
+
+
+
+
+
+    </body>
+    </html>

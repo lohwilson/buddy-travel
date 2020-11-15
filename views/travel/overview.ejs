@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Show</title>
+    <%- include('../partials/head.ejs') %>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <link href="/css/profile.css" rel="stylesheet">
+
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="container overview">
+        <div class="tripOverviewButtons">
+            <a class="action-button shadow animate blue" href="/travel/new">New</a>
+            <a class="action-button shadow animate yellow" href="/travelUpcoming">Upcoming</a>
+            <a class="action-button shadow animate green" href="/travelCompleted">Completed</a>
+        </div>
+
+        <% if(upcomingTravel.length !== 0 || completedTravel.length !== 0){ %>
+            <div>
+                <h3>Upcoming Trips: <%= upcomingTravel.length %></h3>
+                <h3>Completed Trips: <%= completedTravel.length %></h3>
+                <h3 id="totalSpent" val="<%= total %>">Amount Spent on Travel: S$ <%= total %></h3>
+                <h3 id="totalSpentFlight" val="<%= totalFlights %>">Amount Spent on Flights: S$ <%= totalFlights %></h3>
+                <h3 id="totalSpentAccommodation" val="<%= totalAccommodation %>">Amount Spend on Accommodation: S$ <%= totalAccommodation %></h3>
+                <h3>Average Budget per Trip: S$ <%= averageBudget %></h3>
+            </div>
+
+            <div class="form-row field">
+                <div class="form-group col-md-4"> Trip
+                </br>
+                    <select name="trip" class="form-control selectpicker" id="chooseTrip" required>
+                        <option>
+                            Total
+                        </option>
+                        <% travel.forEach(travel =>{ %>
+                            <option>
+                            <%= travel.country.name %>
+                            <%= travel.inBoundDate %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <div class="chartsContainer">
+                    <div class="title-bar">
+                    </div>
+                    <div class="contents">
+                        <div class="charts">
+                            <div class="pieChart">
+                                <canvas id="myChart1"></canvas>
+                            </div>
+                    
+                            <div class="barChart">
+                                <canvas id="myChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <% } else { %>
+
+            <h3> No trip data yet! </h3>
+
+        <% } %>
+    </div>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src="/js/profile.js" charset="utf-8"></script>
+
+</body> 
+</html>
+

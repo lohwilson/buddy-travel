@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Trip</title>
+    <%- include('../partials/head.ejs') %>
+
+</head>
+<body>
+  <%- include('../partials/navbar.ejs') %>
+
+  <div class="tripButtons">
+    <a class="action-button shadow animate green" href="/travelCompleted">Completed Trips</a>
+    <a class="action-button shadow animate blue" href="#">New Trip</a>
+    <a class="action-button shadow animate yellow" href="/travelUpcoming">Upcoming Trips</a>
+</div>
+
+    <div class="container">
+        <h2 class="heading"><strong>New Trip</strong></h2>
+        <div class="selectedCountryFlag"></div>
+
+        <p><em>Fields marked with (*) are required.</em></p>
+        <form action="/travel" method="POST">
+            <div class="form-row field">
+                <div class="form-group col-md-4"> Country of Destination (*)
+                </br>
+                    <select name="country" class="form-control selectpicker" id="chooseNewCountry" required>
+
+                        <% country.forEach(country =>{ %>
+                            <option>
+                            <%= country.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+            </div>
+
+
+
+            <div class="form-group field">
+              <div class="grid">
+                <div class="col-3">
+                  <div class="controls">
+                    <input type="date" id="arrive" class="floatLabel" name="arrive" value="" required>
+                    <label for="arrive" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Arrival Date (*)</label>
+                  </div>      
+                </div>
+                <div class="col-3">
+                  <div class="controls">
+                    <input type="date" id="depart" class="floatLabel" name="depart" value=""  required>
+                    <label for="depart" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Departure Date (*)</label>
+                  </div>      
+                </div>
+              </div>
+            </div>
+
+            <h4>Flight Details</h4>
+            <div class="form-row field">
+              <div class="form-group col-md-3"> 
+                <label for="airline">Airline</label>
+                <input type="text" class="form-control" name= "airline" id="airline" placeholder="Airline">
+              </div>
+              <div class="form-group col-md-2"> 
+                <label for="flightTime">Time</label>
+                <input type="time" class="form-control" name="flightTime" id="flightTime" placeholder="Time">
+              </div>
+              <div class="form-group col-md-2">
+                <label for="flightNo">Flight No.</label>
+                <input type="text" class="form-control" name="flightNo" id="flightNo" placeholder="Flight No.">
+              </div>
+              <div class="form-group col-md-4">
+                <label for="airport">Airport</label>
+                <input type="text" class="form-control" name="airport" id="airport" placeholder="Airport">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="flightPrice">Price ($)</label>
+                <input type="number" class="form-control" name="flightPrice" id="flightPrice" placeholder="Price" min=0>
+              </div>
+            </div>
+    
+    
+            <h4>Accommodation Details</h4>
+            <div class="form-row field">
+              <div class="form-group col-md-4"> 
+                <label for="accommodationName">Name</label>
+                <input type="text" class="form-control" name="accommodationName" id="accommodationName" placeholder="Name">
+              </div>
+              <div class="form-group col-md-7">
+                <label for="accommodationAddress">Address</label>
+                <input type="text" class="form-control" name="accommodationAddress" id="accommodationAddress" placeholder="Address">
+              </div>
+              <div class="form-group col-md-1">
+                <label for="accommodationPrice">Price ($)</label>
+                <input type="number" class="form-control" name="accommodationPrice" id="accommodationPrice" placeholder="Price" min=0>
+              </div>
+            </div>
+
+            <h4>Budget</h4>
+            <div class="form-row field">
+              <div class="form-group col-md-2.5"> 
+                <label for="allocatedBudget">Estimated Budget (*) (S$): </label>
+                <input type="number" class="form-control" name="allocatedBudget" id="allocatedBudget" placeholder="Budget" min=0 required>
+              </div>
+              <em>(including flight and accommodation)</em>
+            </div>
+
+            <h4>Additional Info</h4>
+            <div class="form-row field">
+              <div class="form-group col-md-6">
+                <label for="notes">Notes to self:</label>
+                <textarea class="form-control" name="notes" id="notes" rows="6"></textarea>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <input class="btn btn-success" type="submit" value="Add Trip" />
+                </div>
+            </div>
+        </form>
+    </div>
+  
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

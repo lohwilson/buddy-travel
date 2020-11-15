@@ -1,0 +1,24 @@
+
+.chartsContainer {
+    width: 90%;
+    background-color: whitesmoke;
+}
+
+.charts {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.pieChart {
+    width: 100%;
+}
+
+.barChart {
+    width: 100%
+}
+
+
+
+
+  

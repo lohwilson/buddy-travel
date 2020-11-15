@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Trips</title>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    <div class="tripButtons">
+        <a class="action-button shadow animate yellow" href="/travelUpcoming">Upcoming Trips</a>
+        <a class="action-button shadow animate green" href="#">Completed Trips</a>
+        <a class="action-button shadow animate blue" href="/travel/new">New Trip</a>
+    </div>
+
+    <div class="container trip-container ">
+
+        <% if(travel.length === 0){ %>
+            <h2> No completed trips yet! </h2>
+        <% } %>
+        
+        <% travel.forEach((travel,index) =>{ %>
+            <div class="cardCompleted" style="width: 18rem;">
+                <img src="<%= travel.country.flag %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                <h5 class="card-title"><%= travel.country.name %></h5>
+                <p class="card-text">Leaving on: <%= travel.outBoundDate %></p>
+                <a href="/travel/<%= travel._id %>" class="btn btn-primary">Show Trip Details</a>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+
+    <!-- <div class=pagination center>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+    </div> -->
+
+    <%- include('../partials/footer.ejs') %>
+
+</body> 
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "project_2_new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-flash": "^0.1.1",
+    "consolidate": "^0.16.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "fetch": "^1.1.0",
+    "googleapis": "^64.0.0",
+    "handlebars": "^4.7.6",
+    "method-override": "^3.0.0",
+    "moment": "^2.29.1",
+    "mongoose": "^5.10.11",
+    "node-fetch": "^2.6.1",
+    "nodemon": "^2.0.6",
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0",
+    "twilio": "^3.51.0",
+    "unirest": "^0.6.0",
+    "unsplash-js": "^6.3.0"
+  }
+}

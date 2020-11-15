@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Hotels</title>
+    <%- include('../partials/head.ejs') %>
+
+</head>
+<body>
+
+    
+    <% if (currentUser) { %>
+
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="leftNav">
+                <a class="navButtons" href="/">Home</a>
+                <a class="navButtons" href="/travel">Trips</a>
+                <a class="navButtons" href="/travelAdvice">Travel Advice</a>
+                <a class="navButtons" href="/searchFlights">Search Flights</a>
+                <a class="navButtons" href="/searchHotels">Search Hotels</a>
+            </div>
+
+            <div class="rightNav">
+                <a class="navButtons" href="/profile"><%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %>'s Profile</a>
+                <form action="/sessions?_method=DELETE" method="post">
+                    <input type="submit" value="Logout">
+                </form>
+            </div>
+        </nav>
+
+        <% } else { %>
+            <nav class="navbar navbar-dark bg-dark fixed-top">
+                <div class="leftNav">
+                    <a class="navButtons" href="/">Home</a>
+                    <a class="navButtons" href="/travelAdvice">Travel Advice</a>
+                    <a class="navButtons" href="/searchFlights">Search Flights</a>
+                    <a class="navButtons" href="/searchHotels">Search Hotels</a>
+                </div>
+    
+                <div class="rightNav">
+                    <a class="navButtons" href="/login">Login</a>
+                    <a class="navButtons" href="/register">Sign Up</a>
+                </div>
+            </nav>
+    
+        <% } %>
+
+
+    <div class="container">
+        <h2 class="heading"><strong>Search Hotels</strong></h2>
+        <p><em>Fields marked with (*) are required.</em></p>
+        <form action="/searchHotels" method="POST">
+            <div class="form-row field">
+                <div class="form-group col-md-4"> Destination (*)
+                </br>
+                    <select name="destination" class="form-control selectpicker" id="destination" required>
+
+                        <% country.forEach(country =>{ %>
+                            <option>
+                            <%= country.name %>
+                            </option>
+                        <% }) %>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group field">
+              <div class="grid">
+                <div class="col-3">
+                  <div class="controls">
+                    <input type="date" id="arrive" class="floatLabel" name="arrive" value="" required>
+                    <label for="arrive" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Depart (*)</label>
+                  </div>      
+                </div>
+                <div class="col-3">
+                  <div class="controls">
+                    <input type="date" id="depart" class="floatLabel" name="depart" value=""  required>
+                    <label for="depart" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Return (*)</label>
+                  </div>      
+                </div>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <input class="btn btn-success" type="submit" value="Search Hotels" />
+                </div>
+            </div>
+        </form>
+    </div>
+  
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+    <%- include('../partials/head.ejs') %>
+    <link href="/css/welcome.css" rel="stylesheet">
+
+</head>
+<body>
+
+
+    <nav class="navbar navbar-dark bg-dark fixed-top">
+        <div class="leftNav">
+            <a class="navButtons" href="/">Home</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <p>Welcome <%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %></p>
+        <a href="/">Click here to Continue</a>
+    </div>
+        
+
+
+
+
+</body> 
+</html>

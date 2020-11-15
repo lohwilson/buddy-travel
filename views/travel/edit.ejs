@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Trip</title>
+    <%- include('../partials/head.ejs') %>
+
+</head>
+<body>
+    <%- include('../partials/navbar.ejs') %>
+
+
+    <div class="container">
+        <h2 class="heading"><strong>Edit <%= travel.country.name %> Trip</strong></h2>
+        <p><em>Fields marked with (*) are required.</em></p>
+        <form action="/travel/<%= travel._id %>?_method=PUT" method="POST">
+            
+            <div class="form-group field">
+                <div class="grid">
+                <div class="col-3">
+                    <div class="controls">
+                    <input type="date" id="arrive" class="floatLabel" name="arrive" value="<%= travel.outBoundDate %>" required>
+                    <label for="arrive" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Arrival Date (*)</label>
+                    </div>      
+                </div>
+                <div class="col-3">
+                    <div class="controls">
+                    <input type="date" id="depart" class="floatLabel" name="depart" value="<%= travel.inBoundDate %>" required>
+                    <label for="depart" class="label-date"><i class="fa fa-calendar"></i>&nbsp;&nbsp;  Departure Date (*)</label>
+                    </div>      
+                </div>
+                </div>
+            </div>
+
+            <h4>Flight Details</h4>
+            <div class="form-row field">
+            <div class="form-group col-md-3"> 
+                <label for="airline">Airline</label>
+                <input type="text" class="form-control" name= "airline" id="airline" placeholder="Airline" value="<%= travel.flight.airline %>">
+            </div>
+            <div class="form-group col-md-2"> 
+                <label for="flightTime">Time</label>
+                <input type="time" class="form-control" name="flightTime" id="flightTime" placeholder="Time" value="<%= travel.flight.time %>">
+            </div>
+            <div class="form-group col-md-2">
+                <label for="flightNo">Flight No.</label>
+                <input type="text" class="form-control" name="flightNo" id="flightNo" placeholder="Flight No." value="<%= travel.flight.flightNo %>">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="airport">Airport</label>
+                <input type="text" class="form-control" name="airport" id="airport" placeholder="Airport" value="<%= travel.flight.airport %>">
+            </div>
+            <div class="form-group col-md-1">
+                <label for="flightPrice">Price ($)</label>
+                <input type="number" class="form-control" name="flightPrice" id="flightPrice" placeholder="Price" value="<%= travel.flight.price %>">
+            </div>
+            </div>
+
+
+            <h4>Accommodation Details</h4>
+            <div class="form-row field">
+            <div class="form-group col-md-4"> 
+                <label for="accommodationName">Name</label>
+                <input type="text" class="form-control" name="accommodationName" id="accommodationName" placeholder="Name" value="<%= travel.accommodation.name %>">
+            </div>
+            <div class="form-group col-md-7">
+                <label for="accommodationAddress">Address</label>
+                <input type="text" class="form-control" name="accommodationAddress" id="accommodationAddress" placeholder="Address" value="<%= travel.accommodation.address %>">
+            </div>
+            <div class="form-group col-md-1">
+                <label for="accommodationPrice">Price ($)</label>
+                <input type="number" class="form-control" name="accommodationPrice" id="accommodationPrice" placeholder="Price" value="<%= travel.accommodation.price %>">
+            </div>
+            </div>
+  
+            <h4>Budget</h4>
+            <div class="form-row field">
+                <div class="form-group col-md-2.5"> 
+                  <label for="allocatedBudget">Estimated Budget (*) (S$): </label>
+                  <input type="number" class="form-control" name="allocatedBudget" id="allocatedBudget" placeholder="Budget" min="<%= minBudget %>" value="<%= travel.budget.allocated %>" required>
+                </div>
+                <em>(including flight and accommodation)</em>
+
+
+                <!-- <% if(travel.completed === true){ %>
+                    <div class="form-group col-md-2"> 
+                        <label for="actualBudget">Actual Budget ($)</label>
+                        <input type="number" class="form-control" name="actualBudget" id="actualBudget" placeholder="Budget" min=0 value="<%= travel.budget.actual %>">
+                    </div>    
+                <% } %> -->
+            </div>
+  
+            <h4>Additional Info</h4>
+            <div class="form-row field">
+                <div class="form-group col-md-6">
+                  <label for="notes">Notes to self:</label>
+                  <textarea class="form-control" name="notes" id="notes" rows="6"><%= travel.notes %></textarea>
+                </div>
+            </div>
+
+            <div class="field is-grouped">
+                <div class="control">
+                    <input class="btn btn-success" type="submit" value="Edit Trip" />
+                </div>
+                <div class="control">
+                    <a class="btn btn-primary" href="/travel">Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+  
+    <%- include('../partials/footer.ejs') %>
+
+</body>
+</html>
+

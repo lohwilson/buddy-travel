@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Trips</title>
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+
+    <%- include('../partials/navbar.ejs') %>
+
+    
+    <div class="tripButtons">
+        <a class="action-button shadow animate blue" href="/travel/new">New Trip</a>
+        <a class="action-button shadow animate yellow" href="#">Upcoming Trips</a>
+        <a class="action-button shadow animate green" href="/travelCompleted">Completed Trip</a>
+    </div>
+
+    <div class="container trip-container ">
+
+        <% if(travel.length === 0){ %>
+            <div class="emptyTripContainer">
+                <h2> No upcoming trips! </h2>
+                <a href="/travel/new"> Create a new trip! </a>
+            </div>
+        <% } %>
+
+        <% travel.forEach((travel,index) =>{ %>            
+            <div class="cardUpcoming" style="width: 18rem;">
+                <img src="<%= travel.country.flag %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title"><%= travel.country.name %></h5>
+                  <p class="card-text">Leaving on: <%= travel.outBoundDate %></p>
+                  <a href="/travel/<%= travel._id %>" class="btn btn-primary">Show Trip Details</a>
+                </div>
+            </div>
+        <% }) %>
+
+    </div>
+
+
+    <%- include('../partials/footer.ejs') %>
+
+</body> 
+</html>

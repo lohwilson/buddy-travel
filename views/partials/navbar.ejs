@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="leftNav">
+        <a class="navButtons" href="/">Home</a>
+        <a class="navButtons" href="/travel">Trips</a>
+        <a class="navButtons" href="/travelAdvice">Travel Advice</a>
+        <a class="navButtons" href="/searchFlights">Search Flights</a>
+        <a class="navButtons" href="/searchHotels">Search Hotels</a>
+    </div>
+
+    <div class="rightNav">
+        <a class="navButtons" href="/profile"><%= currentUser.username.charAt(0).toUpperCase() + currentUser.username.slice(1) %>'s Profile</a>
+        <form action="/sessions?_method=DELETE" method="post">
+            <input type="submit" value="Logout">
+        </form>
+    </div>
+</nav>
