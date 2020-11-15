@@ -1,14 +1,8 @@
 TODOS
 
 
-- set currency and images into database object, so that wont need to call everytime on show page
 - front page image carousell
 - add flight and accommodation photo for respective pages
-
-
-
-
-
 
 - flash messages
 - schema validation

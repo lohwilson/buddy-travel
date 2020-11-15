@@ -48,3 +48,10 @@ This app will also be linked to several APIs to retrieve data on flights and acc
 |`views`| Contains codes that render the front-end | This includes front-end rendering codes for the `onboarding` interface, `user` 'interface, and `trips` interface, on top of `dashboard` interface, and 'error' interface|
 
 ## Wireframes
+
+![alt text]('./wireframe/wireframe1.jpeg')
+![alt text](./wireframe/wireframe2.jpeg)
+![alt text]('/wireframe/wireframe3.jpeg')
+![alt text](/wireframe/wireframe4.jpeg)
+![alt text](wireframe/wireframe5.jpeg)
+
