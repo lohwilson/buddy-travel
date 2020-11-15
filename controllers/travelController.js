@@ -75,58 +75,60 @@ module.exports = {
             const response1 = await fetch(`https://free.currconv.com/api/v7/convert?apiKey=${process.env.APIKEY}&q=${query1}_${query2}&compact=ultra`)
             let result1 = await response1.json()
             let newResult = Object.entries(result1)
-            let exchangeRate = (newResult[0][1]).toFixed(2)
+            // let exchangeRate = (newResult[0][1]).toFixed(2)
+            let exchangeRate = 1
+
             ////////////////////////////////////    CURRENCY API    //////////////////////////////////////////
 
             //////////////////////////////////////    HOTELS API    //////////////////////////////////////////
-            // let countryName = travel.country.name
-            const hotelResponse = await fetch(`https://hotels4.p.rapidapi.com/locations/search?query=${countryName}&locale=en_US`, {
-                                    "method": "GET",
-                                    "headers": {
-                                        "x-rapidapi-key": process.env.rapidAPI,
-                                        "x-rapidapi-host": "hotels4.p.rapidapi.com"
-                                    }
-                                })
-            const hotelResult = await hotelResponse.json()
-            // console.log(hotelResult);
-            // console.log(hotelResult.suggestions[0].entities);
-            // console.log(hotelResult.suggestions[0].entities[0].destinationId);
+            // // let countryName = travel.country.name
+            // const hotelResponse = await fetch(`https://hotels4.p.rapidapi.com/locations/search?query=${countryName}&locale=en_US`, {
+            //                         "method": "GET",
+            //                         "headers": {
+            //                             "x-rapidapi-key": process.env.rapidAPI,
+            //                             "x-rapidapi-host": "hotels4.p.rapidapi.com"
+            //                         }
+            //                     })
+            // const hotelResult = await hotelResponse.json()
+            // // console.log(hotelResult);
+            // // console.log(hotelResult.suggestions[0].entities);
+            // // console.log(hotelResult.suggestions[0].entities[0].destinationId);
 
-            let entity0 = hotelResult.suggestions[0].entities
-            let entity1 = hotelResult.suggestions[1].entities
-            let entity2 = hotelResult.suggestions[2].entities
-            let entity3 = hotelResult.suggestions[3].entities
-            let entity0Id = []
-            let entity1Id = []
-            let entity2Id = []
-            let entity3Id = []
+            // let entity0 = hotelResult.suggestions[0].entities
+            // let entity1 = hotelResult.suggestions[1].entities
+            // let entity2 = hotelResult.suggestions[2].entities
+            // let entity3 = hotelResult.suggestions[3].entities
+            // let entity0Id = []
+            // let entity1Id = []
+            // let entity2Id = []
+            // let entity3Id = []
 
-            // let entity = hotelResult.suggestions
-            // for (let i = 0; i < entity.length; i++){
-            //     for (let j = 0; j < entity[i].entities.length; j++){
+            // // let entity = hotelResult.suggestions
+            // // for (let i = 0; i < entity.length; i++){
+            // //     for (let j = 0; j < entity[i].entities.length; j++){
                     
-            //     }
+            // //     }
+            // // }
+
+            // for (let i = 0; i < entity0.length; i++){
+            //     entity0Id.push(entity0[i].destinationId)
             // }
+            // // console.log(entity0Id)
 
-            for (let i = 0; i < entity0.length; i++){
-                entity0Id.push(entity0[i].destinationId)
-            }
-            // console.log(entity0Id)
+            // for (let i = 0; i < entity1.length; i++){
+            //     entity1Id.push(entity1[i].landmarkCityDestinationId)
+            // }
+            // // console.log(entity1Id)
 
-            for (let i = 0; i < entity1.length; i++){
-                entity1Id.push(entity1[i].landmarkCityDestinationId)
-            }
-            // console.log(entity1Id)
+            // for (let i = 0; i < entity2.length; i++){
+            //     entity2Id.push(entity2[i].destinationId)
+            // }
+            // // console.log(entity2Id)
 
-            for (let i = 0; i < entity2.length; i++){
-                entity2Id.push(entity2[i].destinationId)
-            }
-            // console.log(entity2Id)
-
-            for (let i = 0; i < entity3.length; i++){
-                entity3Id.push(entity3[i].destinationId)
-            }
-            // console.log(entity3Id)
+            // for (let i = 0; i < entity3.length; i++){
+            //     entity3Id.push(entity3[i].destinationId)
+            // }
+            // // console.log(entity3Id)
 
             //////////////////////////////////////    HOTELS API    //////////////////////////////////////////
 
