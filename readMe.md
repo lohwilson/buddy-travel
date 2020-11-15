@@ -9,7 +9,7 @@
 - [Limitations](#limitations)
 
 ## Project Site
-Heroku Page: https://sleepy-taiga-92579.herokuapp.com/
+Heroku Page: https://buddy-traveler-companion.herokuapp.com/
 
 ***Super Important notes on Latency***: 
 - Latency: Average 20s per request (please wait patiently for the app to load), probably due to the allocated region (US) by Heroku. 
