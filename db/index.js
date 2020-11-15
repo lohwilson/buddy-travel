@@ -1,8 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 
 // const MONGO_URL = 'mongodb://localhost:27017';
-const MONGO_URL = process.env.MONGODB_URI;
-const DB_NAME = 'test';
+const MONGO_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017'
+const DB_NAME = 'project';
 const COLLECTIONS = {
     USERS: 'users',
     TRAVEL: 'travel'
