@@ -137,9 +137,9 @@ module.exports = {
             const unsplashResult = await unsplashResponse.json()
             let pictureResult = unsplashResult.results
             let countryImages = []
-            for(let i = 0; i < pictureResult.length; i++){
-                countryImages.push(pictureResult[i].urls.full)
-            }
+            // for(let i = 0; i < pictureResult.length; i++){
+            //     countryImages.push(pictureResult[i].urls.full)
+            // }
             ////////////////////////////////////    UNSPLASH API    //////////////////////////////////////////
 
             const item = {
