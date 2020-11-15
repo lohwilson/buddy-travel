@@ -2,13 +2,13 @@ const fetch = require('node-fetch')
 const db = require('../db')
 const moment = require('moment');
 const ObjectId = require('mongodb').ObjectID;
-const APIKEY = process.env.APIKEY
 require('dotenv').config();
 // const twilioAPI = process.env.twilioAPI
 // const twilioAUTH = process.env.twilioAUTH
-const travelAPIKEY = process.env.travelAPIKEY
+const UNSPLASH_API_KEY = process.env.UNSPLASH_API_KEY
+const CURRENCY_API_KEY = process.env.CURRENCY_API_KEY
+const RAPID_API_KEY = process.env.RAPID_API_KEY
 // const TRAVEL_API_KEY 
-const travelSecret = process.env.travelSecret
 const unirest = require("unirest");
 const { getCountry } = require('../models/country');
 
@@ -16,21 +16,12 @@ global.fetch = fetch;
 
 const Unsplash = require('unsplash-js').default;
 const toJson = require('unsplash-js').toJson;
-const unsplash = new Unsplash({ accessKey: travelAPIKEY });
+const unsplash = new Unsplash({ accessKey: UNSPLASH_API_KEY });
 
 module.exports = {
     async newTripForm (req, res) {
         try {
-
-            // console.log(1);
-            // await getCountry(()=>{
-            //     console.log(3);
-            // })
-            // console.log(2);
-
-            const response = await fetch('https://restcountries.eu/rest/v2/all')
-            let country = await response.json()
-
+            const country = await getCountry()
             return res.render('travel/new', { currentUser: req.session.currentUser, country });
         } catch (err) {
             return res.render('errors/404', { err });
@@ -39,8 +30,8 @@ module.exports = {
     async create (req, res) {
         try {
             ////////////////////////////////////    COUNTRY API    //////////////////////////////////////////
-            const response = await fetch('https://restcountries.eu/rest/v2/all')
-            let country = await response.json()
+            const country = await getCountry()
+
             let countryIndex, capital, flag, population, timezones, currencies
             const countryName = req.body.country
             for (let i = 0; i < country.length; i++){
@@ -72,7 +63,7 @@ module.exports = {
             let query1, query2
             query1 = 'SGD'
             query2 = currencies.code
-            const response1 = await fetch(`https://free.currconv.com/api/v7/convert?apiKey=${process.env.APIKEY}&q=${query1}_${query2}&compact=ultra`)
+            const response1 = await fetch(`https://free.currconv.com/api/v7/convert?apiKey=${CURRENCY_API_KEY}&q=${query1}_${query2}&compact=ultra`)
             let result1 = await response1.json()
             let newResult = Object.entries(result1)
             let exchangeRate = (newResult[0][1]).toFixed(2)
@@ -85,7 +76,7 @@ module.exports = {
             // const hotelResponse = await fetch(`https://hotels4.p.rapidapi.com/locations/search?query=${countryName}&locale=en_US`, {
             //                         "method": "GET",
             //                         "headers": {
-            //                             "x-rapidapi-key": process.env.rapidAPI,
+            //                             "x-rapidapi-key": RAPID_API_KEY,
             //                             "x-rapidapi-host": "hotels4.p.rapidapi.com"
             //                         }
             //                     })
@@ -254,7 +245,7 @@ module.exports = {
                 const response = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/${country}/${currency}/${locale}/${originplace}-sky/${destinationplace}-sky/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`, {
                     "method": "GET",
                     "headers": {
-                        "x-rapidapi-key": process.env.rapidAPI,
+                        "x-rapidapi-key": RAPID_API_KEY,
                         "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
                     }
                 })
@@ -273,7 +264,7 @@ module.exports = {
             const hotelResponse = await fetch(`https://hotels4.p.rapidapi.com/locations/search?query=${countryName}&locale=en_US`, {
                                     "method": "GET",
                                     "headers": {
-                                        "x-rapidapi-key": process.env.rapidAPI,
+                                        "x-rapidapi-key": RAPID_API_KEY,
                                         "x-rapidapi-host": "hotels4.p.rapidapi.com"
                                     }
                                 })
@@ -443,7 +434,7 @@ module.exports = {
         const response1 = await fetch(`https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/${country1}/${currency}/${locale}/${originplace}-sky/${destinationplace}-sky/${outboundpartialdate}?inboundpartialdate=${inboundpartialdate}`, {
                                 "method": "GET",
                                 "headers": {
-                                    "x-rapidapi-key": process.env.rapidAPI,
+                                    "x-rapidapi-key": RAPID_API_KEY,
                                     "x-rapidapi-host": "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com"
                                 }
                             })
@@ -484,7 +475,7 @@ module.exports = {
         const hotelResponse = await fetch(`https://hotels4.p.rapidapi.com/locations/search?query=${countryName}&locale=en_US`, {
                                 "method": "GET",
                                 "headers": {
-                                    "x-rapidapi-key": process.env.rapidAPI,
+                                    "x-rapidapi-key": RAPID_API_KEY,
                                     "x-rapidapi-host": "hotels4.p.rapidapi.com"
                                 }
                             })
@@ -526,7 +517,7 @@ module.exports = {
         const hotelResponse2 = await fetch(`https://hotels4.p.rapidapi.com/properties/get-details?id=${hotelID}&locale=en_US&currency=${currency}&checkOut=${checkOut}&adults1=1&checkIn=${checkIn}`, {
                                     "method": "GET",
                                     "headers": {
-                                        "x-rapidapi-key": process.env.rapidAPI,
+                                        "x-rapidapi-key": RAPID_API_KEY,
                                         "x-rapidapi-host": "hotels4.p.rapidapi.com"
                                     }
                                 })
@@ -547,7 +538,7 @@ module.exports = {
         const hotelResponse3 = await fetch(`https://hotels4.p.rapidapi.com/properties/list?destinationId=${destinationID}&pageNumber=1&checkIn=${checkIn}&checkOut=${checkOut}&pageSize=25&adults1=1&currency=${currency}&locale=en_US&sortOrder=PRICE`, {
                                     "method": "GET",
                                     "headers": {
-                                        "x-rapidapi-key": process.env.rapidAPI,
+                                        "x-rapidapi-key": RAPID_API_KEY,
                                         "x-rapidapi-host": "hotels4.p.rapidapi.com"
                                     }
                                 })
