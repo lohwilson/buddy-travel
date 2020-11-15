@@ -54,4 +54,3 @@ This app will also be linked to several APIs to retrieve data on flights and acc
 ![alt text](wireframe/wireframe3.jpeg)
 ![alt text](wireframe/wireframe4.jpeg)
 ![alt text](wireframe/wireframe5.jpeg)
-
