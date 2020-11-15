@@ -168,20 +168,20 @@ module.exports = {
                         name: req.body.accommodationName,
                         address: req.body.accommodationAddress,
                         price:  req.body.accommodationPrice,
-                        type: {
-                            id0: {
-                                id: entity0Id
-                            },
-                            id1: {
-                                id: entity1Id
-                            },
-                            id2: {
-                                id: entity2Id
-                            },
-                            id3: {
-                                id: entity3Id
-                            }
-                        }
+                        // type: {
+                        //     id0: {
+                        //         id: entity0Id
+                        //     },
+                        //     id1: {
+                        //         id: entity1Id
+                        //     },
+                        //     id2: {
+                        //         id: entity2Id
+                        //     },
+                        //     id3: {
+                        //         id: entity3Id
+                        //     }
+                        // }
                     },
                 budget: {
                         allocated: req.body.allocatedBudget,
