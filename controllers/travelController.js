@@ -75,8 +75,8 @@ module.exports = {
             const response1 = await fetch(`https://free.currconv.com/api/v7/convert?apiKey=${process.env.APIKEY}&q=${query1}_${query2}&compact=ultra`)
             let result1 = await response1.json()
             let newResult = Object.entries(result1)
-            // let exchangeRate = (newResult[0][1]).toFixed(2)
-            let exchangeRate = 1
+            let exchangeRate = (newResult[0][1]).toFixed(2)
+            // let exchangeRate = 1
 
             ////////////////////////////////////    CURRENCY API    //////////////////////////////////////////
 
@@ -137,9 +137,9 @@ module.exports = {
             const unsplashResult = await unsplashResponse.json()
             let pictureResult = unsplashResult.results
             let countryImages = []
-            // for(let i = 0; i < pictureResult.length; i++){
-            //     countryImages.push(pictureResult[i].urls.full)
-            // }
+            for(let i = 0; i < pictureResult.length; i++){
+                countryImages.push(pictureResult[i].urls.full)
+            }
             ////////////////////////////////////    UNSPLASH API    //////////////////////////////////////////
 
             const item = {
