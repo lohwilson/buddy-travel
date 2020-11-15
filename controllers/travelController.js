@@ -490,7 +490,6 @@ module.exports = {
         let entity2Id = []
         let entity3Id = []
 
-
         for (let i = 0; i < entity0.length; i++){
             entity0Id.push(entity0[i].destinationId)
         }
@@ -543,9 +542,6 @@ module.exports = {
                                     }
                                 })
         const hotelResult3 = await hotelResponse3.json()
-
-
-
         res.render('travel/showHotels', { currentUser: req.session.currentUser, countryName, hotelResult2, hotelResult3 })
     }
 }
